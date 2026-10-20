@@ -7,7 +7,9 @@ public class Product {
     private double price;
 
     // Required by Jackson to build an object from incoming JSON
-    public Product() {}
+    public Product() {
+
+    }
 
     public Product(Long id, String name, double price) {
         this.id = id;
