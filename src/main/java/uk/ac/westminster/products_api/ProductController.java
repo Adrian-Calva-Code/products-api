@@ -26,8 +26,9 @@ public class ProductController {
     }
 
     // ---- task 10 ----
+    // Product change to DigitalProduct. This is a temporary fix.
     @PostMapping("/products")
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody DigitalProduct product) {
         return productService.addProduct(product);
     }
 

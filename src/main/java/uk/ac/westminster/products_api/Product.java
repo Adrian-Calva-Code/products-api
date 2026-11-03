@@ -1,6 +1,6 @@
 package uk.ac.westminster.products_api;
 
-public class Product {
+public abstract class Product {
 
     private Long id;
     private String name;
@@ -17,9 +17,15 @@ public class Product {
         this.price = price;
     }
 
+    //week 7 - Task 1: new public method
+    // No body. Product cannot answer this question,
+    // so every concrete subclass MUST answer it.
+    public abstract String getSummary();
+
     public Long getId() { return id; }
     public String getName() { return name; }
     public double getPrice() { return price; }
+
 
     // week 4 — task 1
     public void setId(Long id) { this.id = id; }
