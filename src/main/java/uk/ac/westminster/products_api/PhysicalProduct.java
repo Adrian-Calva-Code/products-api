@@ -2,50 +2,43 @@
 // A sShoppingCart has-a Product because it contains products rather than being a type of Product
 package uk.ac.westminster.products_api;
 
-public class PhysicalProduct extends Product implements Discountable{
-
+public class PhysicalProduct extends Product
+        implements Discountable {
     private double weightKg;
     private String dimensions;
-
-    // TODO (a): empty no-arg constructor for Jackson
+    private double discountedPrice;
     public PhysicalProduct() {
-
     }
-    // TODO (b): full constructor.
     public PhysicalProduct(Long id, String name, double price,
                            double weightKg, String dimensions) {
-        super (id, name, price);    // First line must be super(id, name, price);
+        super(id, name, price);
         this.weightKg = weightKg;
-        this.dimensions = dimensions;   // then assign this.weightKg and this.dimensions
+        this.dimensions = dimensions;
+        this.discountedPrice = price;
     }
-    // TODO (c): getWeightKg() and getDimensions()
-    public double getWeightKg() {
-        return weightKg;
-    }
-
-    public String getDimensions() {
-        return dimensions;
-    }
-
-    //Week7 - Activity2
-    //task 12: getSummary turned into abstract
     @Override
     public String getSummary() {
-        return "Digital: " + getName() + " | Weight: " + weightKg;
+        return "Physical: " + getName()
+                + " | " + weightKg + "kg";
     }
-
-    //Week7 - task 15
-    private double discountedPrice;
-
     @Override
     public void applyDiscount(double rate) {
+// A physical item still has to be shipped, and shipping
+// is never discounted — so cap the reduction at 20%.
         double capped = Math.min(rate, 0.20);
         this.discountedPrice = getPrice() * (1 - capped);
     }
-
     @Override
     public double getDiscountedPrice() {
-        return this.discountedPrice;
+        return discountedPrice;
+    }
+    public double getWeightKg() { return weightKg; }
+    public String getDimensions() { return dimensions; }
+    public void setWeightKg(double weightKg) {
+        this.weightKg = weightKg;
+    }
+    public void setDimensions(String dimensions) {
+        this.dimensions = dimensions;
     }
 }
 
